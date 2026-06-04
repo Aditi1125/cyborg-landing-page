@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT ASCEND — The Future Was Never Meant To Be Artificial</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBg: '#050816',
+                        brandPrimary: '#00E5FF',
+                        brandSecondary: '#7B2FF7',
+                        brandText: '#FFFFFF',
+                        brandMuted: '#A8B2C7'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            background-color: #050816;
+        }
+
+        /* Custom scrollbar layout */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050816;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            transition: background 0.3s ease;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 229, 255, 0.3);
+        }
+
+        /* High-end technology geometric background grid */
+        .bg-grid-pattern {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 70%, transparent 100%);
+        }
+
+        .bg-radial-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(123, 47, 247, 0.15) 0%, rgba(0, 229, 255, 0.05) 50%, transparent 100%);
+        }
+
+        /* Glassmorphism panel configurations */
+        .research-card, #navbar.nav-scrolled {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px) saturate(120%);
+            -webkit-backdrop-filter: blur(20px) saturate(120%);
+        }
+
+        /* Scroll Reveal Base Classes */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Premium Heading Shifting Gradient */
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-gradient-shift {
+            background-size: 200% auto;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        /* Floating Movement Animation loops */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .animate-spin-slow {
+            animation: spin 30s linear infinite;
+            transform-origin: center;
+        }
+
+        .animate-spin-reverse {
+            animation: spin-back 20s linear infinite;
+            transform-origin: center;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-back {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        @keyframes scrollLine {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+
+        .animate-scroll-line {
+            animation: scrollLine 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+
+        .glow-node {
+            filter: drop-shadow(0 0 4px currentColor);
+        }
+
+        /* Timeline tracking system states */
+        .timeline-dot {
+            box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4);
+            transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
+        }
+
+        .timeline-item.active-dot .timeline-dot {
+            background-color: #00E5FF !important;
+            box-shadow: 0 0 0 8px rgba(0, 229, 255, 0.15), 0 0 20px 2px rgba(0, 229, 255, 0.6);
+        }
+
+        /* Responsive Mobile Hamburger transitions */
+        #menuBtn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(2px, 1px);
+        }
+        #menuBtn.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        #menuBtn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(2px, -1px);
+        }
+    </style>
+</head>
+<body class="bg-brandBg text-brandText font-sans overflow-x-hidden selection:bg-brandPrimary/30 selection:text-brandText">
+
+    <div id="loader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#050816] transition-opacity duration-500">
+        <div class="text-center">
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-[0.4em] text-transparent bg-clip-text bg-gradient-to-r from-white to-brandMuted animate-pulse">
+                PROJECT ASCEND
+            </h1>
+            <div class="mt-4 flex items-center justify-center space-x-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-brandPrimary animate-ping"></span>
+                <p class="text-xs font-mono tracking-widest text-brandMuted uppercase opacity-80">Initializing Future...</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed inset-0 -z-20 overflow-hidden pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern opacity-20"></div>
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-brandSecondary/10 blur-[120px]"></div>
+        <div class="absolute bottom-[20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-brandPrimary/5 blur-[150px]"></div>
+    </div>
+    <canvas id="particleCanvas" class="fixed inset-0 -z-10 pointer-events-none"></canvas>
+
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-40 transition-all duration-500 border-b border-transparent backdrop-blur-0 py-6">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group focus:outline-none">
+                <span class="font-mono text-xl font-black tracking-[0.25em] text-white group-hover:text-brandPrimary transition-colors duration-300">
+                    PROJECT <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary to-brandSecondary">ASCEND</span>
+                </span>
+            </a>
+
+            <div class="hidden md:flex items-center space-x-10 text-sm font-medium tracking-widest uppercase">
+                <a href="#about" class="text-brandMuted hover:text-white transition-colors duration-300 relative py-2 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brandPrimary after:transition-all after:duration-300 hover:after:w-full">About</a>
+                <a href="#research" class="text-brandMuted hover:text-white transition-colors duration-300 relative py-2 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brandPrimary after:transition-all after:duration-300 hover:after:w-full">Research</a>
+                <a href="#evolution" class="text-brandMuted hover:text-white transition-colors duration-300 relative py-2 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brandPrimary after:transition-all after:duration-300 hover:after:w-full">Evolution</a>
+                <a href="#vision" class="text-brandMuted hover:text-white transition-colors duration-300 relative py-2 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-brandPrimary after:transition-all after:duration-300 hover:after:w-full">Vision</a>
+                <a href="#cta" class="px-5 py-2.5 rounded-full bg-white/5 text-white border border-white/10 hover:border-brandPrimary/50 hover:bg-brandPrimary/5 transition-all duration-300">Contact</a>
+            </div>
+
+            <button id="menuBtn" class="md:hidden flex flex-col justify-between w-6 h-4 transform transition-all duration-300 focus:outline-none z-50" aria-label="Toggle Menu">
+                <span class="w-full h-[1.5px] bg-white transition-all duration-300 origin-left"></span>
+                <span class="w-full h-[1.5px] bg-white transition-all duration-300"></span>
+                <span class="w-full h-[1.5px] bg-white transition-all duration-300 origin-left"></span>
+            </button>
+        </div>
+
+        <div id="mobileMenu" class="fixed inset-0 bg-brandBg/98 backdrop-blur-2xl z-40 flex flex-col justify-center items-center space-y-8 opacity-0 pointer-events-none transition-all duration-500">
+            <a href="#about" class="mobile-link text-2xl font-light tracking-widest text-brandMuted hover:text-white transition-colors">About</a>
+            <a href="#research" class="mobile-link text-2xl font-light tracking-widest text-brandMuted hover:text-white transition-colors">Research</a>
+            <a href="#evolution" class="mobile-link text-2xl font-light tracking-widest text-brandMuted hover:text-white transition-colors">Evolution</a>
+            <a href="#vision" class="mobile-link text-2xl font-light tracking-widest text-brandMuted hover:text-white transition-colors">Vision</a>
+            <a href="#cta" class="mobile-link px-8 py-3 rounded-full bg-white/5 border border-white/10 text-xl font-light tracking-widest text-white hover:border-brandPrimary">Contact</a>
+        </div>
+    </nav>
+
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 md:px-12 overflow-hidden">
+        <div class="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+            
+            <div class="lg:col-span-7 flex flex-col items-start space-y-6 text-left order-2 lg:order-1 scroll-reveal">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brandPrimary/10 border border-brandPrimary/20 backdrop-blur-md">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brandPrimary animate-pulse"></span>
+                    <span class="text-xs font-mono uppercase tracking-[0.2em] text-brandPrimary">Techfest 2026 Submission</span>
+                </div>
+                
+                <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-white">
+                    BECOME<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary via-[#5480ff] to-brandSecondary bg-[length:200%_auto] animate-gradient-shift">MORE THAN</span><br>
+                    HUMAN
+                </h1>
+                
+                <h2 class="text-xl md:text-2xl font-medium tracking-wide text-white/90">
+                    The future isn't artificial. <span class="text-brandPrimary">It's collaborative.</span>
+                </h2>
+                
+                <p class="max-w-xl text-base md:text-lg text-brandMuted font-light leading-relaxed">
+                    Project ASCEND explores the next frontier of human potential by combining biological intelligence with adaptive machine learning systems.
+                </p>
+                
+                <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 w-full sm:w-auto">
+                    <a href="#research" class="px-8 py-4 rounded-xl font-medium tracking-wide bg-gradient-to-r from-brandPrimary to-brandSecondary text-brandBg shadow-lg shadow-brandPrimary/20 hover:shadow-brandPrimary/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-center">
+                        Explore Research
+                    </a>
+                    <a href="#about" class="px-8 py-4 rounded-xl font-medium tracking-wide bg-white/5 text-white border border-white/10 backdrop-blur-md hover:bg-white/10 hover:border-white/20 active:scale-[0.98] transition-all duration-300 text-center">
+                        Read Protocol
+                    </a>
+                </div>
+            </div>
+            
+            <div id="parallaxContainer" class="lg:col-span-5 flex items-center justify-center order-1 lg:order-2 h-[350px] sm:h-[450px] lg:h-auto">
+                <div class="relative w-full max-w-[420px] aspect-square transition-transform duration-300 ease-out">
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-b from-brandPrimary/10 to-brandSecondary/5 border border-white/5 backdrop-blur-xl -z-10 shadow-2xl scale-95 animate-float"></div>
+                    
+                    <svg id="heroHologram" class="w-full h-full p-4 drop-shadow-[0_0_30px_rgba(0,229,255,0.2)] animate-float" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="200" cy="200" r="160" stroke="url(#hologramGrad)" stroke-width="1" stroke-dasharray="4 8" class="animate-spin-slow opacity-40" />
+                        <circle cx="200" cy="200" r="120" stroke="url(#hologramGrad)" stroke-width="0.75" class="opacity-30" />
+                        <circle cx="200" cy="200" r="80" stroke="url(#hologramGrad2)" stroke-width="1" stroke-dasharray="20 10" class="animate-spin-reverse opacity-50" />
+                        <path d="M200 40 L200 360 M40 200 L360 200 M88 88 L312 312 M88 312 L312 88" stroke="white" stroke-width="0.5" stroke-opacity="0.1" />
+                        <polygon points="200,80 290,140 290,260 200,320 110,260 110,140" stroke="url(#hologramGrad)" stroke-width="1" fill="url(#polyFill)" fill-opacity="0.03" class="animate-pulse" />
+                        <polygon points="200,120 250,160 250,240 200,280 150,240 150,160" stroke="url(#hologramGrad2)" stroke-width="0.75" fill="none" />
+                        <circle cx="200" cy="80" r="5" fill="#00E5FF" class="glow-node" />
+                        <circle cx="290" cy="140" r="5" fill="#7B2FF7" class="glow-node" />
+                        <circle cx="290" cy="260" r="4" fill="#00E5FF" class="glow-node" />
+                        <circle cx="200" cy="320" r="6" fill="#7B2FF7" class="glow-node" />
+                        <circle cx="110" cy="260" r="4" fill="#00E5FF" class="glow-node" />
+                        <circle cx="110" cy="140" r="5" fill="#7B2FF7" class="glow-node" />
+                        <circle cx="200" cy="200" r="10" fill="url(#coreGrad)" class="animate-ping" style="animation-duration: 3s;" />
+                        <circle cx="200" cy="200" r="7" fill="white" />
+                        <circle cx="200" cy="40" r="2" fill="#00E5FF" />
+                        <circle cx="360" cy="200" r="2" fill="#7B2FF7" />
+                        <circle cx="200" cy="360" r="3" fill="#00E5FF" />
+                        <circle cx="40" cy="200" r="2" fill="#7B2FF7" />
+                        <defs>
+                            <linearGradient id="hologramGrad" x1="0" y1="0" x2="400" y2="400" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#00E5FF" />
+                                <stop offset="100%" stop-color="#7B2FF7" />
+                            </linearGradient>
+                            <linearGradient id="hologramGrad2" x1="400" y1="0" x2="0" y2="400" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#7B2FF7" />
+                                <stop offset="100%" stop-color="#00E5FF" />
+                            </linearGradient>
+                            <linearGradient id="polyFill" x1="200" y1="80" x2="200" y2="320" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#00E5FF" />
+                                <stop offset="100%" stop-color="#7B2FF7" />
+                            </linearGradient>
+                            <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#FFFFFF" />
+                                <stop offset="70%" stop-color="#00E5FF" stop-opacity="0.5" />
+                                <stop offset="100%" stop-color="#7B2FF7" stop-opacity="0" />
+                            </radialGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 opacity-60">
+            <span class="text-[10px] font-mono tracking-[0.3em] uppercase text-brandMuted">Scroll Interface</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-brandPrimary to-transparent animate-scroll-line"></div>
+        </div>
+    </section>
+
+    <section id="about" class="py-32 px-6 md:px-12 relative max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            
+            <div class="lg:col-span-5 flex items-center justify-center order-2 lg:order-1 scroll-reveal">
+                <div class="relative w-full max-w-[360px] aspect-square border border-white/5 bg-gradient-to-br from-white/5 to-transparent rounded-2xl p-8 flex items-center justify-center backdrop-blur-md group hover:border-brandPrimary/30 transition-all duration-500">
+                    <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-brandPrimary/40 rounded-tl-lg group-hover:border-brandPrimary transition-colors"></div>
+                    <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-white/10 rounded-tr-lg group-hover:border-brandPrimary transition-colors"></div>
+                    <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-white/10 rounded-bl-lg group-hover:border-brandPrimary transition-colors"></div>
+                    <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-brandSecondary/40 rounded-br-lg group-hover:border-brandSecondary transition-colors"></div>
+                    
+                    <svg class="w-full h-full opacity-80 group-hover:opacity-100 transition-opacity" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 100 H180 M100 20 V180" stroke="white" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.3"/>
+                        <circle cx="100" cy="100" r="60" stroke="url(#aboutGrad)" stroke-width="1" class="animate-spin-slow"/>
+                        <rect x="50" y="50" width="100" height="100" stroke="white" stroke-width="0.5" opacity="0.2" class="rotate-45 origin-center"/>
+                        <circle cx="100" cy="40" r="3" fill="#00E5FF"/>
+                        <circle cx="100" cy="160" r="3" fill="#7B2FF7"/>
+                        <defs>
+                            <linearGradient id="aboutGrad" x1="40" y1="40" x2="160" y2="160" gradientUnits="userSpaceOnUse">
+                                <stop offset="0%" stop-color="#00E5FF"/>
+                                <stop offset="100%" stop-color="#7B2FF7"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 space-y-8 order-1 lg:order-2 text-left scroll-reveal">
+                <div class="space-y-4">
+                    <span class="text-xs font-mono tracking-[0.4em] uppercase text-brandSecondary font-bold">Initiative Philosophy</span>
+                    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Beyond Artificial Intelligence</h2>
+                </div>
+                <div class="space-y-6 text-base md:text-lg text-brandMuted font-light leading-relaxed">
+                    <p>
+                        Technology has always extended human capability. Rather than creating algorithmic systems destined to function in complete isolation, Project ASCEND imagines a future where biological frameworks are directly synchronized with cloud-scale machine processing modules.
+                    </p>
+                    <p>
+                        We do not seek to build autonomous replacement machines. We design augmented biological structures that optimize and expand organic human thought metrics.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-6 pt-6 border-t border-white/5">
+                    <div class="space-y-1">
+                        <div class="text-3xl md:text-4xl font-extrabold text-white tracking-tight font-mono">
+                            <span class="stat-counter" data-target="98">0</span>%
+                        </div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-brandMuted">Neural Sync</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="text-3xl md:text-4xl font-extrabold text-white tracking-tight font-mono">
+                            <span class="stat-counter" data-target="250">0</span>+
+                        </div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-brandMuted">Simulations</div>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="text-3xl md:text-4xl font-extrabold text-white tracking-tight font-mono">
+                            <span class="stat-counter" data-target="2035">0</span>
+                        </div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-brandMuted">Integration</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="research" class="py-32 px-6 md:px-12 relative max-w-7xl mx-auto">
+        <div class="text-center space-y-4 mb-20 scroll-reveal">
+            <span class="text-xs font-mono tracking-[0.4em] uppercase text-brandPrimary font-bold">Operational Pillars</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Advanced Research Modules</h2>
+            <p class="max-w-2xl mx-auto text-brandMuted font-light text-base md:text-lg">
+                Delivering highly integrated systems across specialized computing and cognitive augmentation frontiers.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="research-card group relative rounded-2xl bg-gradient-to-b from-white/[0.07] to-transparent border border-white/5 p-8 backdrop-blur-md transition-all duration-500 hover:scale-[1.03] scroll-reveal">
+                <div class="absolute inset-0 rounded-2xl border border-brandPrimary/0 group-hover:border-brandPrimary/30 transition-all duration-500 pointer-events-none"></div>
+                <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-brandPrimary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                <div class="w-12 h-12 rounded-xl bg-brandPrimary/10 flex items-center justify-center border border-brandPrimary/20 mb-8 text-brandPrimary group-hover:bg-brandPrimary/20 transition-colors duration-300">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3m0 0h3m-3 0v3m0-3V9m-9 3h3m0 0h3m-3 0v3m0-3V9m12 3h3m0 0h3m-3 0v3m0-3V9" />
+                        <circle cx="12" cy="12" r="10" stroke-dasharray="3 3"/>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3 tracking-wide">Neural Link</h3>
+                <p class="text-brandMuted font-light leading-relaxed text-sm md:text-base">
+                    Real-time cognitive augmentation through adaptive AI systems mapping synaptic telemetry pathways dynamically.
+                </p>
+            </div>
+
+            <div class="research-card group relative rounded-2xl bg-gradient-to-b from-white/[0.07] to-transparent border border-white/5 p-8 backdrop-blur-md transition-all duration-500 hover:scale-[1.03] scroll-reveal" style="animation-delay: 150ms;">
+                <div class="absolute inset-0 rounded-2xl border border-brandSecondary/0 group-hover:border-brandSecondary/30 transition-all duration-500 pointer-events-none"></div>
+                <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-brandSecondary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                <div class="w-12 h-12 rounded-xl bg-brandSecondary/10 flex items-center justify-center border border-brandSecondary/20 mb-8 text-brandSecondary group-hover:bg-brandSecondary/20 transition-colors duration-300">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3 tracking-wide">Vision-X</h3>
+                <p class="text-brandMuted font-light leading-relaxed text-sm md:text-base">
+                    Advanced machine perception algorithms explicitly designed to enhance situational human spatial awareness vectors.
+                </p>
+            </div>
+
+            <div class="research-card group relative rounded-2xl bg-gradient-to-b from-white/[0.07] to-transparent border border-white/5 p-8 backdrop-blur-md transition-all duration-500 hover:scale-[1.03] scroll-reveal" style="animation-delay: 300ms;">
+                <div class="absolute inset-0 rounded-2xl border border-brandPrimary/0 group-hover:border-brandPrimary/30 transition-all duration-500 pointer-events-none"></div>
+                <div class="absolute inset-0 rounded-2xl bg-gradient-to-b from-brandPrimary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                
+                <div class="w-12 h-12 rounded-xl bg-brandPrimary/10 flex items-center justify-center border border-brandPrimary/20 mb-8 text-brandPrimary group-hover:bg-brandPrimary/20 transition-colors duration-300">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3 tracking-wide">Synapse Boost</h3>
+                <p class="text-brandMuted font-light leading-relaxed text-sm md:text-base">
+                    Accelerated memory acquisition loops modulated through real-time intelligent bio-neural loop feedbacks.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="evolution" class="py-32 px-6 md:px-12 relative max-w-5xl mx-auto">
+        <div class="text-center space-y-4 mb-24 scroll-reveal">
+            <span class="text-xs font-mono tracking-[0.4em] uppercase text-brandSecondary font-bold">Integration Architecture</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">The Evolutionary Timeline</h2>
+        </div>
+
+        <div class="relative w-full before:absolute before:top-0 before:bottom-0 before:left-4 md:before:left-1/2 before:-translate-x-[0.5px] before:w-[1px] before:bg-gradient-to-b before:from-brandPrimary before:via-brandSecondary before:to-transparent">
+            
+            <div class="timeline-item relative w-full mb-16 md:mb-24 flex flex-col md:flex-row items-start md:justify-between scroll-reveal">
+                <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-brandPrimary border-4 border-brandBg z-10 transition-transform duration-500 timeline-dot"></div>
+                <div class="w-full md:w-[45%] pl-12 md:pl-0 md:text-right flex flex-col md:items-end space-y-2">
+                    <span class="text-2xl font-mono font-bold text-brandPrimary">2026</span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">Neural Interface</h3>
+                    <p class="text-sm text-brandMuted font-light leading-relaxed max-w-sm md:text-right">
+                        Refining non-invasive biosensors designed to securely link high-bandwidth neurological output channels to cloud clusters.
+                    </p>
+                </div>
+                <div class="hidden md:block w-[45%]"></div>
+            </div>
+
+            <div class="timeline-item relative w-full mb-16 md:mb-24 flex flex-col md:flex-row items-start md:justify-between scroll-reveal">
+                <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-brandSecondary border-4 border-brandBg z-10 transition-transform duration-500 timeline-dot"></div>
+                <div class="hidden md:block w-[45%]"></div>
+                <div class="w-full md:w-[45%] pl-12 md:pl-12 flex flex-col items-start space-y-2">
+                    <span class="text-2xl font-mono font-bold text-brandSecondary">2028</span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">Bio-Synthetic Memory</h3>
+                    <p class="text-sm text-brandMuted font-light leading-relaxed max-w-sm">
+                        Introduction of contextual hybrid processing modules capable of archiving complex high-capacity analytical tracking data patterns.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item relative w-full mb-16 md:mb-24 flex flex-col md:flex-row items-start md:justify-between scroll-reveal">
+                <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-brandPrimary border-4 border-brandBg z-10 transition-transform duration-500 timeline-dot"></div>
+                <div class="w-full md:w-[45%] pl-12 md:pl-0 md:text-right flex flex-col md:items-end space-y-2">
+                    <span class="text-2xl font-mono font-bold text-brandPrimary">2032</span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">Collective Intelligence Network</h3>
+                    <p class="text-sm text-brandMuted font-light leading-relaxed max-w-sm md:text-right">
+                        Secure decentralization arrays allowing multiple augmented human nodes to execute cooperative processing metrics seamlessly.
+                    </p>
+                </div>
+                <div class="hidden md:block w-[45%]"></div>
+            </div>
+
+            <div class="timeline-item relative w-full flex flex-col md:flex-row items-start md:justify-between scroll-reveal">
+                <div class="absolute left-4 md:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-brandSecondary border-4 border-brandBg z-10 transition-transform duration-500 timeline-dot"></div>
+                <div class="hidden md:block w-[45%]"></div>
+                <div class="w-full md:w-[45%] pl-12 md:pl-12 flex flex-col items-start space-y-2">
+                    <span class="text-2xl font-mono font-bold text-brandSecondary">2040</span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">Human-AI Symbiosis</h3>
+                    <p class="text-sm text-brandMuted font-light leading-relaxed max-w-sm">
+                        Complete fluid processing harmonization, dissolving traditional conceptual barriers between organic perception and synthetic analysis.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="vision" class="py-40 px-6 md:px-12 relative overflow-hidden bg-gradient-to-b from-transparent via-white/[0.02] to-transparent border-t border-b border-white/5">
+        <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10 scroll-reveal">
+            <span class="text-xs font-mono tracking-[0.4em] uppercase text-brandPrimary font-bold">Manifesto</span>
+            <blockquote class="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight text-white leading-tight">
+                "The next stage of evolution <br class="hidden sm:inline">will <span class="text-transparent bg-clip-text bg-gradient-to-r from-brandPrimary to-brandSecondary font-medium">not replace humanity</span>. <br>It will expand it."
+            </blockquote>
+            <div class="w-12 h-[1px] bg-brandMuted/30 mx-auto mt-6"></div>
+        </div>
+    </section>
+
+    <section id="cta" class="py-32 px-6 md:px-12 relative text-center max-w-5xl mx-auto">
+        <div class="absolute inset-0 bg-radial-glow opacity-30 -z-10 pointer-events-none"></div>
+        
+        <div class="space-y-8 scroll-reveal">
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-white">
+                THE FUTURE<br>
+                BELONGS TO THOSE<br>
+                WHO DARE TO EVOLVE.
+            </h2>
+            <p class="max-w-xl mx-auto text-brandMuted font-light text-base md:text-lg">
+                Enter the pipeline. Connect with our development systems and participate in secure architectural staging protocols.
+            </p>
+            <div class="pt-6">
+                <button class="relative inline-flex items-center justify-center px-10 py-5 rounded-xl font-bold tracking-widest uppercase text-sm text-brandBg bg-white overflow-hidden group transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] shadow-xl shadow-white/5 hover:shadow-brandPrimary/20">
+                    <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-brandPrimary to-brandSecondary opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></span>
+                    <span class="group-hover:text-white transition-colors duration-300">Join The Future</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 py-12 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0 text-sm">
+            <div class="flex flex-col items-center md:items-start space-y-2 text-center md:text-left">
+                <span class="font-mono font-bold tracking-widest text-white">PROJECT ASCEND</span>
+                <span class="text-xs text-brandMuted font-light">
+                    Designed for <span class="text-white/80 font-medium">Techfest 2026 Campus Ambassador Program</span>
+                </span>
+            </div>
+            <div class="flex items-center space-x-8 font-mono text-xs tracking-widest uppercase">
+                <a href="#" class="text-brandMuted hover:text-brandPrimary transition-colors duration-300">GitHub</a>
+                <a href="#" class="text-brandMuted hover:text-brandPrimary transition-colors duration-300">LinkedIn</a>
+                <a href="#" class="text-brandMuted hover:text-brandPrimary transition-colors duration-300">X</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // ==========================================
+    // 1. EMERGENCY LOADER BYPASS SYSTEM
+    // ==========================================
+    (function() {
+        const removeLoaderInstantly = () => {
+            const loader = document.getElementById('loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 400);
+            }
+        };
+
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+            removeLoaderInstantly();
+        } else {
+            document.addEventListener('DOMContentLoaded', removeLoaderInstantly);
+            window.addEventListener('load', removeLoaderInstantly);
+        }
+        
+        // Unconditional safety net: loader disappears under 1 second regardless of engine state
+        setTimeout(removeLoaderInstantly, 900);
+    })();
+
+    // ==========================================
+    // MAIN APPLICATION GRAPHICS ENGINE
+    // ==========================================
+    document.addEventListener('DOMContentLoaded', () => {
+        try {
+            // Navbar behavior mapping
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 40) {
+                        navbar.classList.add('nav-scrolled', 'bg-brandBg/80', 'border-white/5', 'py-4');
+                        navbar.classList.remove('backdrop-blur-0', 'py-6', 'border-transparent');
+                    } else {
+                        navbar.classList.remove('nav-scrolled', 'bg-brandBg/80', 'border-white/5', 'py-4');
+                        navbar.classList.add('backdrop-blur-0', 'py-6', 'border-transparent');
+                    }
+                }, { passive: true });
+            }
+
+            // Mobile menu behaviors
+            const menuBtn = document.getElementById('menuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            if (menuBtn && mobileMenu) {
+                const toggleMenu = () => {
+                    menuBtn.classList.toggle('active');
+                    mobileMenu.classList.toggle('opacity-0');
+                    mobileMenu.classList.toggle('pointer-events-none');
+                    document.body.classList.toggle('overflow-hidden');
+                };
+                menuBtn.addEventListener('click', toggleMenu);
+                mobileLinks.forEach(link => link.addEventListener('click', () => {
+                    if (menuBtn.classList.contains('active')) toggleMenu();
+                }));
+            }
+
+            // Mouse Interactive Vector Parallax Engine
+            const heroHologram = document.getElementById('heroHologram');
+            if (heroHologram && window.innerWidth > 1024) {
+                window.addEventListener('mousemove', (e) => {
+                    const mouseX = (e.clientX / window.innerWidth) - 0.5;
+                    const mouseY = (e.clientY / window.innerHeight) - 0.5;
+                    heroHologram.style.transform = `translate3d(${mouseX * 25}px, ${mouseY * 25}px, 0) rotateX(${-mouseY * 12}deg) rotateY(${mouseX * 12}deg)`;
+                }, { passive: true });
+            }
+
+            // Ambient Drift Particle Engine
+            const canvas = document.getElementById('particleCanvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                if (ctx) {
+                    let particlesArray = [];
+                    const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; };
+                    window.addEventListener('resize', resize, { passive: true });
+                    resize();
+
+                    class Particle {
+                        constructor() { this.reset(); }
+                        reset() {
+                            this.x = Math.random() * canvas.width;
+                            this.y = Math.random() * canvas.height;
+                            this.speedX = (Math.random() * 0.2) - 0.1;
+                            this.speedY = (Math.random() * 0.25) - 0.05;
+                            this.radius = Math.random() * 1.5 + 0.5;
+                            this.alpha = Math.random() * 0.4 + 0.1;
+                        }
+                        update() {
+                            this.x += this.speedX; this.y -= this.speedY;
+                            if (this.y < 0 || this.x < 0 || this.x > canvas.width) { this.reset(); this.y = canvas.height; }
+                        }
+                        draw() {
+                            ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                            ctx.fillStyle = `rgba(0, 229, 255, ${this.alpha})`; ctx.fill();
+                        }
+                    }
+                    const init = () => {
+                        particlesArray = [];
+                        for (let i = 0; i < Math.min(Math.floor(window.innerWidth * 0.03), 35); i++) particlesArray.push(new Particle());
+                    };
+                    init();
+                    const loop = () => {
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        particlesArray.forEach(p => { p.update(); p.draw(); });
+                        requestAnimationFrame(loop);
+                    };
+                    loop();
+                    window.addEventListener('resize', init, { passive: true });
+                }
+            }
+
+            // Scroll Tracing Intersection Observers
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            const counters = document.querySelectorAll('.stat-counter');
+            const items = document.querySelectorAll('.timeline-item');
+
+            if ('IntersectionObserver' in window) {
+                const count = (node) => {
+                    const target = parseInt(node.getAttribute('data-target'), 10);
+                    let steps = 60, current = 0, step = target / steps;
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) { node.textContent = target; clearInterval(timer); }
+                        else { node.textContent = Math.floor(current); }
+                    }, 16);
+                };
+                
+                const obs = new IntersectionObserver((entries) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add('revealed');
+                            if (e.target.classList.contains('stat-counter')) { count(e.target); obs.unobserve(e.target); }
+                            if (e.target.classList.contains('timeline-item')) e.target.classList.add('active-dot');
+                        }
+                    });
+                }, { threshold: 0.05 });
+
+                reveals.forEach(el => obs.observe(el));
+                counters.forEach(el => obs.observe(el));
+                items.forEach(el => obs.observe(el));
+            } else {
+                reveals.forEach(el => el.classList.add('revealed'));
+                counters.forEach(el => el.textContent = el.getAttribute('data-target'));
+                items.forEach(el => el.classList.add('active-dot'));
+            }
+        } catch (e) { console.error("Graphics initialized gracefully.", e); }
+    });
+    </script>
+</body>
+</html>
