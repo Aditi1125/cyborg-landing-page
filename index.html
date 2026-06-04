@@ -35,7 +35,7 @@
             background-color: #050816;
         }
 
-        /* Custom scrollbar layout */
+        
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -52,7 +52,7 @@
             background: rgba(0, 229, 255, 0.3);
         }
 
-        /* High-end technology geometric background grid */
+       
         .bg-grid-pattern {
             background-size: 50px 50px;
             background-image: 
@@ -66,14 +66,14 @@
             background: radial-gradient(circle at 50% 50%, rgba(123, 47, 247, 0.15) 0%, rgba(0, 229, 255, 0.05) 50%, transparent 100%);
         }
 
-        /* Glassmorphism panel configurations */
+        
         .research-card, #navbar.nav-scrolled {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px) saturate(120%);
             -webkit-backdrop-filter: blur(20px) saturate(120%);
         }
 
-        /* Scroll Reveal Base Classes */
+        
         .scroll-reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -86,7 +86,7 @@
             transform: translateY(0);
         }
 
-        /* Premium Heading Shifting Gradient */
+       
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -98,7 +98,7 @@
             animation: gradientShift 6s ease infinite;
         }
 
-        /* Floating Movement Animation loops */
+        
         @keyframes float {
             0% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -144,7 +144,7 @@
             filter: drop-shadow(0 0 4px currentColor);
         }
 
-        /* Timeline tracking system states */
+       
         .timeline-dot {
             box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.4);
             transition: box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease;
@@ -155,7 +155,7 @@
             box-shadow: 0 0 0 8px rgba(0, 229, 255, 0.15), 0 0 20px 2px rgba(0, 229, 255, 0.6);
         }
 
-        /* Responsive Mobile Hamburger transitions */
+        
         #menuBtn.active span:nth-child(1) {
             transform: rotate(45deg) translate(2px, 1px);
         }
@@ -539,9 +539,7 @@
     </footer>
 
     <script>
-    // ==========================================
-    // 1. EMERGENCY LOADER BYPASS SYSTEM
-    // ==========================================
+     
     (function() {
         const removeLoaderInstantly = () => {
             const loader = document.getElementById('loader');
@@ -561,13 +559,11 @@
             window.addEventListener('load', removeLoaderInstantly);
         }
         
-        // Unconditional safety net: loader disappears under 1 second regardless of engine state
+        
         setTimeout(removeLoaderInstantly, 900);
     })();
 
-    // ==========================================
-    // MAIN APPLICATION GRAPHICS ENGINE
-    // ==========================================
+  
     document.addEventListener('DOMContentLoaded', () => {
         try {
             // Navbar behavior mapping
@@ -584,7 +580,7 @@
                 }, { passive: true });
             }
 
-            // Mobile menu behaviors
+            
             const menuBtn = document.getElementById('menuBtn');
             const mobileMenu = document.getElementById('mobileMenu');
             const mobileLinks = document.querySelectorAll('.mobile-link');
@@ -601,7 +597,7 @@
                 }));
             }
 
-            // Mouse Interactive Vector Parallax Engine
+            
             const heroHologram = document.getElementById('heroHologram');
             if (heroHologram && window.innerWidth > 1024) {
                 window.addEventListener('mousemove', (e) => {
@@ -611,7 +607,7 @@
                 }, { passive: true });
             }
 
-            // Ambient Drift Particle Engine
+             
             const canvas = document.getElementById('particleCanvas');
             if (canvas) {
                 const ctx = canvas.getContext('2d');
@@ -655,7 +651,7 @@
                 }
             }
 
-            // Scroll Tracing Intersection Observers
+             
             const reveals = document.querySelectorAll('.scroll-reveal');
             const counters = document.querySelectorAll('.stat-counter');
             const items = document.querySelectorAll('.timeline-item');
